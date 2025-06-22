@@ -74,7 +74,7 @@ VALIDATE $? "Starting and Enabling backend"
 dnf install mysql -y &>> $LOG_FILE
 VALIDATE $? "Installing mysql"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql &>> $LOG_FILE
+mysql -h mysql.anjuma.store -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql &>> $LOG_FILE
 VALIDATE $? "Loading data into mysql" 
 
 systemctl restart backend &>> $LOG_FILE
