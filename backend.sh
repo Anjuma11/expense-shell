@@ -21,9 +21,9 @@ fi
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo -e "$2 is............ $G SUCCESS $W" |tee -a $LOG_FILE
+        echo -e "$W $2 is............ $G SUCCESS $W" |tee -a $LOG_FILE
     else
-        echo -e "$2 is............ $R FAILURE $W" |tee -a $LOG_FILE
+        echo -e "$W $2 is............ $R FAILURE $W" |tee -a $LOG_FILE
         exit 1
     fi
 }
@@ -42,7 +42,7 @@ VALIDATE $? "Installing nodejs"
 id expense &>> $LOG_FILE
 if [ $? -ne 0 ]
 then
-    echo -e "Expense user doesn't exist adding.."
+    echo -e "$N Expense user doesn't exist adding.."
     useradd --system --home /app --shell /sbin/nologin --comment "expense user" expense
     VALIDATE $? "Adding expense User" |tee -a $LOG_FILE
 else
@@ -61,6 +61,9 @@ VALIDATE $? "unzipping backend"
 
 npm install &>> $LOG_FILE
 VALIDATE $? "Installing Nodejs Packages" 
+
+cp $SCRIPT_DIR/backend.serive /etc/systemd/system/backend.service
+VALIDATE $? "Copying backend service file" 
 
 systemctl daemon-reload
 systemctl start backend
