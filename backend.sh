@@ -63,7 +63,7 @@ VALIDATE $? "unzipping backend"
 npm install &>> $LOG_FILE
 VALIDATE $? "Installing Nodejs Packages" 
 
-cp $SCRIPT_DIR/backend.serive /etc/systemd/system/backend.service
+cp $SCRIPT_DIR/backend.service /etc/systemd/system/backend.service
 VALIDATE $? "Copying backend service file" 
 
 systemctl daemon-reload
