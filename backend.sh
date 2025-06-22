@@ -8,6 +8,8 @@ SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 SCRIPT_DIR=$PWD
 
+mkdir -p $LOGS_FOLDER
+
 if [ $USERID -ne 0 ]
 then
     echo -e "$R ERROR::Please run the script with root access $N" |tee -a $LOG_FILE
