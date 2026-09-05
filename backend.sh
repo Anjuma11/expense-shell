@@ -30,11 +30,13 @@ VALIDATE(){
 
 
 
-dnf module disable nodejs -y &>> $LOG_FILE
-VALIDATE $? "Disabling nodejs" 
+#dnf module disable nodejs -y &>> $LOG_FILE
+#VALIDATE $? "Disabling nodejs" 
 
-dnf module enable nodejs:20 -y &>> $LOG_FILE
-VALIDATE $? "enabling nodejs" 
+#dnf module enable nodejs:20 -y &>> $LOG_FILE
+#VALIDATE $? "enabling nodejs" 
+
+curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash
 
 dnf install nodejs -y &>> $LOG_FILE
 VALIDATE $? "Installing nodejs" 
